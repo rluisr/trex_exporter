@@ -1,6 +1,9 @@
 trex_exporter
 =============
 
+[![release](https://github.com/rluisr/trex_exporter/actions/workflows/release.yml/badge.svg)](https://github.com/rluisr/trex_exporter/actions/workflows/release.yml)
+[![lint](https://github.com/rluisr/trex_exporter/actions/workflows/lint.yml/badge.svg?branch=master)](https://github.com/rluisr/trex_exporter/actions/workflows/lint.yml)
+
 Get metrics from T-Rex API.
 
 Environment
@@ -20,9 +23,9 @@ Prometheus Configuration
   metrics_path: /metrics
   static_configs:
     - targets:
-        - "http://<mining machine ip>&worker=<worker name>"
-        - "http://<mining machine ip>&worker=<worker name>"
-        - "http://<mining machine ip>&worker=<worker name>"
+        - "http://<mining machine ip>?worker=<worker name>"
+        - "http://<mining machine ip>?worker=<worker name>"
+        - "http://<mining machine ip>?worker=<worker name>"
   relabel_configs:
     - source_labels: [__address__]
       target_label: __param_target
