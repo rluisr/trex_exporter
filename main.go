@@ -8,6 +8,7 @@ import (
 	"github.com/rluisr/trex_exporter/trex"
 	"log"
 	"net/http"
+	"net/url"
 )
 
 var version string
@@ -32,19 +33,25 @@ func main() {
 func probeHandler(w http.ResponseWriter, r *http.Request) {
 	params := r.URL.Query()
 
+	// target: http://hoge?worker=hoge
+	// Need parse target for getting scheme://host and worker name
 	target := params.Get("target")
 	if target == "" {
 		http.Error(w, "Target parameter is missing", http.StatusBadRequest)
 		return
 	}
 
-	worker := params.Get("worker")
+	targetURL, err := url.Parse(target)
+	if err != nil {
+		http.Error(w, fmt.Sprintf("failed to parse target url: %s", targetURL), http.StatusBadRequest)
+	}
+	q := targetURL.Query()
+
+	target = fmt.Sprintf("%s://%s", targetURL.Scheme, targetURL.Host)
+	worker := q.Get("worker")
 	if worker == "" {
 		http.Error(w, "Worker parameter is missing", http.StatusBadRequest)
 	}
-
-	fmt.Println("target: ", target)
-	fmt.Println("worker: ", worker)
 
 	registry := prometheus.NewRegistry()
 	_ = trex.Probe(context.TODO(), target, worker, registry)
