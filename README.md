@@ -10,9 +10,27 @@ Not supported these configs as a flag only environment variables.
 
 Name                        | Default | Require | Description
 ----------------------------|---------|---------| ----------
-TREX_API_ADDRESS            | -       | yes     |
-TREX_WORKER_NAME            | -       | yes     |
 LISTEN_PORT                 | 49152   | no      |
+
+Prometheus Configuration
+------------------------
+
+```yaml
+- job_name: trex
+  metrics_path: /metrics
+  static_configs:
+    - targets:
+        - "http://<mining machine ip>&worker=<worker name>"
+        - "http://<mining machine ip>&worker=<worker name>"
+        - "http://<mining machine ip>&worker=<worker name>"
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: <your exporter addr>
+```
 
 Metrics
 -------

@@ -6,8 +6,8 @@ import (
 	"net/http"
 )
 
-func (c *Collector) getSummary() (*summary, error) {
-	resp, err := http.Get(fmt.Sprintf("%s/summary", c.TrexAPIAddress))
+func getSummary(target string) (*summary, error) {
+	resp, err := http.Get(fmt.Sprintf("%s/summary", target))
 	if err != nil {
 		return nil, err
 	}
