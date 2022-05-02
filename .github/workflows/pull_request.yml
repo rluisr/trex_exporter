@@ -1,7 +1,7 @@
-name: release
+name: pull request
 
 on:
-  - pull_request
+  pull_request:
 
 jobs:
   container_release:
