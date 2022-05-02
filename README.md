@@ -78,3 +78,8 @@ trex_solved_count{worker="daimon"} 0
 # TYPE trex_total_hashrate gauge
 trex_total_hashrate{worker="daimon"} 3.40924666e+08
 ```
+
+Grafana
+-------
+
+TBD
