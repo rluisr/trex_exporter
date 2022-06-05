@@ -8,6 +8,11 @@ import (
 var nameSpace = "trex"
 
 var (
+	uptimeGauge = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: nameSpace,
+		Name:      "uptime",
+		Help:      "miner uptime",
+	}, []string{"worker"})
 	pingGauge = promauto.NewGaugeVec(prometheus.GaugeOpts{
 		Namespace: nameSpace,
 		Name:      "ping",

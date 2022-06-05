@@ -13,7 +13,7 @@ type summary struct {
 	RejectedCount int        `json:"rejected_count"`
 	SolvedCount   int        `json:"solved_count"`
 	GPUTotal      int        `json:"gpu_total"`
-	UpTime        int
+	Uptime        int        `json:"uptime"`
 	GPUs          []gpuSummary
 }
 
