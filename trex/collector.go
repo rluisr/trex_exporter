@@ -15,9 +15,10 @@ func Probe(ctx context.Context, target, worker string, registry *prometheus.Regi
 		return false
 	}
 
-	registry.MustRegister(pingGauge, gpuTotalGauge, TotalHashRate, RejectedCount, SolvedCount, GPUHashRate, GPUPower, GPUTemperature, GPUMemoryTemperature, GPUFanSpeed, GPUAcceptedCount, GPUInvalidCount, GPURejectedCount, GPULHRLockCount, GPULHRTune)
+	registry.MustRegister(pingGauge, uptimeGauge, gpuTotalGauge, TotalHashRate, RejectedCount, SolvedCount, GPUHashRate, GPUPower, GPUTemperature, GPUMemoryTemperature, GPUFanSpeed, GPUAcceptedCount, GPUInvalidCount, GPURejectedCount, GPULHRLockCount, GPULHRTune)
 
 	pingGauge.WithLabelValues(worker).Set(float64(summary.ActivePool.Ping))
+	uptimeGauge.WithLabelValues(worker).Set(float64(summary.Uptime))
 	gpuTotalGauge.WithLabelValues(worker).Set(float64(summary.GPUTotal))
 	TotalHashRate.WithLabelValues(worker).Set(float64(summary.TotalHashRate))
 	RejectedCount.WithLabelValues(worker).Set(float64(summary.RejectedCount))
