@@ -47,7 +47,7 @@ func probeHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	q := targetURL.Query()
 
-	target = fmt.Sprintf("%s://%s:%s", targetURL.Scheme, targetURL.Host, targetURL.Port())
+	target = fmt.Sprintf("%s://%s:%s", targetURL.Scheme, targetURL.Hostname(), targetURL.Port())
 	worker := q.Get("worker")
 	if worker == "" {
 		http.Error(w, "Worker parameter is missing", http.StatusBadRequest)
