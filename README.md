@@ -103,4 +103,4 @@ trex_total_hashrate{worker="daimon"} 3.40924666e+08
 Grafana
 -------
 
-TBD
+[https://grafana.com/grafana/dashboards/16218](https://grafana.com/grafana/dashboards/16218)
