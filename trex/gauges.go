@@ -13,6 +13,11 @@ var (
 		Name:      "uptime",
 		Help:      "miner uptime",
 	}, []string{"worker"})
+	driverGauge = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: nameSpace,
+		Name:      "driver",
+		Help:      "driver version",
+	}, []string{"worker"})
 	pingGauge = promauto.NewGaugeVec(prometheus.GaugeOpts{
 		Namespace: nameSpace,
 		Name:      "ping",
@@ -47,6 +52,11 @@ var (
 		Namespace: nameSpace,
 		Name:      "gpu_power",
 		Help:      "gpu power",
+	}, []string{"worker", "device_id", "name"})
+	GPUEfficiency = promauto.NewGaugeVec(prometheus.GaugeOpts{
+		Namespace: nameSpace,
+		Name:      "gpu_efficiency",
+		Help:      "gpu efficiency",
 	}, []string{"worker", "device_id", "name"})
 	GPUTemperature = promauto.NewGaugeVec(prometheus.GaugeOpts{
 		Namespace: nameSpace,

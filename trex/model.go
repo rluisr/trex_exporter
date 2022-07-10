@@ -22,10 +22,11 @@ type activePool struct {
 }
 
 type gpuSummary struct {
-	DeviceId          int    `json:"device_id"`
-	Name              string `json:"name"`
-	HashRate          int
-	Power             int
+	DeviceId          int     `json:"device_id"`
+	Name              string  `json:"name"`
+	HashRate          int     `json:"hashrate"`
+	Power             int     `json:"power"`
+	Efficiency        string  `json:"efficiency"`
 	Temperature       int     `json:"temperature"`
 	MemoryTemperature int     `json:"memory_temperature"`
 	FanSpeed          int     `json:"fan_speed"`
